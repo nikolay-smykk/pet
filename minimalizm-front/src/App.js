@@ -1,17 +1,31 @@
-import React from 'react'
-import { Catalog } from './pages/Catalog'
-import './App.css'
-import { Layout } from './features/layout'
-import { Header } from './features/header'
-import { Counter } from './features/counter/Counter'
+import './App.scss'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Home } from './Pages/Home'
+import { Product } from './Pages/Product'
+import { Layer } from './Shared/Layer'
 
 function App() {
     return (
-        <Layout>
-            <Header />
-            <Catalog />
-            <Counter />
-        </Layout>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    index
+                    element={
+                        <Layer>
+                            <Home />
+                        </Layer>
+                    }
+                />
+                <Route
+                    path="products/:id"
+                    element={
+                        <Layer>
+                            <Product />
+                        </Layer>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
