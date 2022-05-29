@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { IoMdInformation } from 'react-icons/io'
 import { observer } from 'mobx-react-lite'
 import Radio from '@mui/material/Radio'
@@ -8,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel'
 import { Cart } from '../../State/Cart'
 import { size } from '../../Settings/size'
 
-const question = [
+const questions = [
     { placeholder: 'Грудь', value: 80 },
     { placeholder: 'Талия', value: 60 },
     { placeholder: 'Бедра', value: 90 },
@@ -23,9 +24,12 @@ const question = [
 const cart = new Cart()
 
 export const Questions = observer(() => {
+    let [question, setQuestion] = useState('')
     const handleChange = (event) => {
         cart.setInputValue(event.target.value)
+        setQuestion(size[event.target.value.toLowerCase()])
     }
+
     return (
         <div className="questions">
             <div className="wrap-radio">
@@ -76,19 +80,21 @@ export const Questions = observer(() => {
                     </RadioGroup>
                 </FormControl>
             </div>
-            {question.map((item, index) => (
-                <div className="question" key={item.placeholder}>
-                    <span>{item.placeholder}</span>
-                    <input
-                        type="number"
-                        pattern="[0-9]*"
-                        inputMode="numeric"
-                        defaultValue={item.value || ''}
-                        placeholder={item.placeholder || ''}
-                    />
-                    <IoMdInformation className="icon" />
-                </div>
-            ))}
+            {Object.values(question).map((item, index) => {
+                console.log('item', item)
+                return (
+                    <div className="question" key={item.title}>
+                        <span>{item.title}</span>
+                        <input
+                            type="number"
+                            pattern="[0-9]*"
+                            inputMode="numeric"
+                            defaultValue={item.title}
+                        />
+                        <IoMdInformation className="icon" />
+                    </div>
+                )
+            })}
         </div>
     )
 })
