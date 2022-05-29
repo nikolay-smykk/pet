@@ -13,6 +13,7 @@ export const Product = () => {
     const key = Object.keys(IMG)[params.id]
     const { img, price, title } = IMG[key]
     const [show, setShow] = useState(false)
+
     return (
         <section className="product">
             <div className="title_block">
@@ -22,7 +23,6 @@ export const Product = () => {
                     onClick={() => setShow(true)}
                 />
             </div>
-
             <div className="">
                 <img src={img} alt="" />
             </div>
@@ -31,7 +31,6 @@ export const Product = () => {
             <button className="button" type="submit">
                 Купить
             </button>
-
             <Modal
                 onClose={() => setShow(!show)}
                 title="Материал"

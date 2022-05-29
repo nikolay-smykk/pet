@@ -1,6 +1,12 @@
 import { IoMdInformation } from 'react-icons/io'
-import { useState } from 'react'
-import { Label } from './label'
+import { observer } from 'mobx-react-lite'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import { Cart } from '../../State/Cart'
+import { size } from '../../Settings/size'
 
 const question = [
     { placeholder: 'Грудь', value: 80 },
@@ -14,16 +20,61 @@ const question = [
     { placeholder: 'Декольте', value: 10 },
     { placeholder: 'Глубина спинки', value: 10 },
 ]
+const cart = new Cart()
 
-const radioLabel = ['x', 's', 'm', 'l', 'xl', 'xxl']
-
-export const Questions = () => {
+export const Questions = observer(() => {
+    const handleChange = (event) => {
+        cart.setInputValue(event.target.value)
+    }
     return (
         <div className="questions">
             <div className="wrap-radio">
-                {radioLabel.map((value) => (
-                    <Label value={value} />
-                ))}
+                <FormControl>
+                    <FormLabel id="demo-row-radio-buttons-group-label">
+                        Размер
+                        {cart.getInputValue()
+                            ? ': ' + cart.getInputValue()
+                            : ''}
+                    </FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        value={cart.getInputValue()}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel
+                            value={size.s.size.value}
+                            control={<Radio />}
+                            label={size.s.size.title}
+                        />
+                        <FormControlLabel
+                            value={size.m.size.value}
+                            control={<Radio />}
+                            label={size.m.size.title}
+                        />
+                        <FormControlLabel
+                            value={size.l.size.value}
+                            control={<Radio />}
+                            label={size.l.size.title}
+                        />
+                        <FormControlLabel
+                            value={size.xl.size.value}
+                            control={<Radio />}
+                            label={size.xl.size.title}
+                        />
+                        <FormControlLabel
+                            value={size.xxl.size.value}
+                            control={<Radio />}
+                            label={size.xxl.size.title}
+                        />
+                        <FormControlLabel
+                            value={size.other.size.value}
+                            control={<Radio />}
+                            label={size.other.size.title}
+                        />
+                    </RadioGroup>
+                </FormControl>
             </div>
             {question.map((item, index) => (
                 <div className="question" key={item.placeholder}>
@@ -40,4 +91,4 @@ export const Questions = () => {
             ))}
         </div>
     )
-}
+})
