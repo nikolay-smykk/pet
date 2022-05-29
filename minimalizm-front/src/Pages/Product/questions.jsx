@@ -1,5 +1,6 @@
 import { IoMdInformation } from 'react-icons/io'
 import { useState } from 'react'
+import { Label } from './label'
 
 const question = [
     { placeholder: 'Грудь', value: 80 },
@@ -14,49 +15,16 @@ const question = [
     { placeholder: 'Глубина спинки', value: 10 },
 ]
 
-const Label = () => (
-    <>
-        <div className="radio">
-            <label>
-                <input type="radio" value={'x'} />
-                XS
-            </label>
-        </div>
-        <div className="radio">
-            <label className="active">
-                <input type="radio" value={'x'} />S
-            </label>
-        </div>
-        <div className="radio">
-            <label>
-                <input type="radio" value={'x'} />M
-            </label>
-        </div>
-        <div className="radio">
-            <label>
-                <input type="radio" value={'x'} />L
-            </label>
-        </div>
-        <div className="radio">
-            <label>
-                <input type="radio" value={'x'} />
-                XL
-            </label>
-        </div>
-        <div className="radio">
-            <label>
-                <input type="radio" value={'x'} />
-                XXL
-            </label>
-        </div>
-    </>
-)
+const radioLabel = ['x', 's', 'm', 'l', 'xl', 'xxl']
 
 export const Questions = () => {
-    const [active, setActive] = useState(0)
     return (
         <div className="questions">
-            <div className="wrap-radio"></div>
+            <div className="wrap-radio">
+                {radioLabel.map((value) => (
+                    <Label value={value} />
+                ))}
+            </div>
             {question.map((item, index) => (
                 <div className="question" key={item.placeholder}>
                     <span>{item.placeholder}</span>
