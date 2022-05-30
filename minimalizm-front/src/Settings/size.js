@@ -65,7 +65,7 @@ export const size = {
         backDepth: { title: 'Глубинаtitle:  спинки', value: 120 },
     },
     other: {
-        size: { title: 'Свой размер', value: 'Свой размер' },
+        size: { title: 'Свой размер', value: 'Other' },
         breasts: { title: 'Грудь', value: 0 },
         talia: { title: 'Талия', value: 0 },
         hips: { title: 'Бедра', value: 0 },

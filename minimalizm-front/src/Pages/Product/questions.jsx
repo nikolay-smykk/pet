@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { IoMdInformation } from 'react-icons/io'
 import { observer } from 'mobx-react-lite'
+import { autorun } from 'mobx'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -22,7 +23,9 @@ const questions = [
     { placeholder: 'Глубина спинки', value: 10 },
 ]
 const cart = new Cart()
-
+autorun(() => {
+    console.log('Energy level:', cart.inputValue)
+})
 export const Questions = observer(() => {
     let [question, setQuestion] = useState('')
     const handleChange = (event) => {
@@ -81,7 +84,6 @@ export const Questions = observer(() => {
                 </FormControl>
             </div>
             {Object.values(question).map((item, index) => {
-                console.log('item', item)
                 return (
                     <div className="question" key={item.title}>
                         <span>{item.title}</span>
@@ -89,7 +91,8 @@ export const Questions = observer(() => {
                             type="number"
                             pattern="[0-9]*"
                             inputMode="numeric"
-                            defaultValue={item.title}
+                            placeholder={item.value}
+                            value={item.value}
                         />
                         <IoMdInformation className="icon" />
                     </div>
