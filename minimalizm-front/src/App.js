@@ -1,32 +1,12 @@
-import './App.scss'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home } from './Pages/Home'
-import { Product } from './Pages/Product'
-import { Layer } from './Shared/Layer'
+
+import './App.css';
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    index
-                    element={
-                        <Layer>
-                            <Home />
-                        </Layer>
-                    }
-                />
-                <Route
-                    path="products/:id"
-                    element={
-                        <Layer>
-                            <Product />
-                        </Layer>
-                    }
-                />
-            </Routes>
-        </BrowserRouter>
-    )
+  return (
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  );
 }
 
-export default App
+export default App;
