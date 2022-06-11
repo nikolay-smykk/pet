@@ -4,7 +4,8 @@
   "info": {
     "singularName": "about-us",
     "pluralName": "about-uses",
-    "displayName": "aboutUs"
+    "displayName": "aboutUs",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,9 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
