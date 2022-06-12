@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
 export const useFetch = (url: RequestInfo | URL) => {
-  const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<any>(null)
+  const [error, setError] = useState<any>(null)
+  const [loading, setLoading] = useState<any>(true)
 
   const fetchData = async () => {
     setLoading(true)
@@ -11,13 +11,16 @@ export const useFetch = (url: RequestInfo | URL) => {
       const response = await fetch(url)
       const json = await response.json()
       setData(json)
+      setLoading(false)
     } catch (e: any) {
       setError(e)
     }
-    return { loading, error, data }
   }
 
   useEffect(() => {
     fetchData()
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url])
+
+  return { loading, error, data }
 }
