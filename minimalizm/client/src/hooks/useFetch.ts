@@ -8,7 +8,7 @@ export const useFetch = (url: RequestInfo | URL) => {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const response = await fetch(url)
+      const response = await fetch(url + '?populate=*&fields=*')
       const json = await response.json()
       setData(json)
       setLoading(false)
