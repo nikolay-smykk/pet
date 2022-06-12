@@ -1,0 +1,12 @@
+@startuml App components
+ 
+ package "Nide.js Electron APPLICATION"{
+	[user interface vue.js] as ui
+
+	node "selenium webdriver"{
+		[User events recorder] as recorder
+		[User events player] as player
+	}
+ }
+
+@enduml
