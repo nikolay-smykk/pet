@@ -1,7 +1,7 @@
+fn add(num_one: i32, num_two: i32) -> i32 {
+    num_one + num_two
+}
+
 fn main() {
-    let name_my = "some";
-    let len = name_my.len();
-    let name = name_my;
-    println!("{}", len);
-    println!("{}", name);
+    println!("{} {}", "some num ", add(1, 2));
 }
