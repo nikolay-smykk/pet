@@ -1,5 +1,6 @@
 fn add(num_one: i32, num_two: i32) -> i32 {
-    num_one + num_two
+    let sum = num_one + num_two
+    sum
 }
 
 fn main() {

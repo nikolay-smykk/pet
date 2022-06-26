@@ -8,6 +8,8 @@ module.exports = {
 		filename:"index.js"
 	},
 	plugin: [
-		new HTMLWebPackPlugin()
+		new HTMLWebPackPlugin({
+			template: './public/index.html',
+		})
 	]
 }
