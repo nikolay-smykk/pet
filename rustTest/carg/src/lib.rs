@@ -26,6 +26,6 @@ pub fn grayscale(encoded_file: &str) -> String {
     "data:image/png;base64,{}",
     encoded_img
   );
-
+  
   data_url
 }
