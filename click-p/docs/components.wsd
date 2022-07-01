@@ -1,0 +1,22 @@
+@startuml some
+
+
+package "Node.js Electron application"{
+	[user interface vue.js] as ui
+
+	node "selenium webdriver"{
+		[user interface recorder] as recorder
+		[user interface player] as player
+	}
+
+
+}
+
+ui --> recorder
+ui --> player
+recorder --> recordfile : save file
+player <-- recordfile: read file
+
+@enduml
+
+*/
