@@ -2,6 +2,8 @@
 
 
 
+
+
     const title = "МАЙОНЕЗ Professional 78% ведро 5 кг. Heinz" 
     const lable = "АКЦИЯ!" 
     const img = "https://prof.alidi.ru/image/60c9b1f598677a7e5789b2f5"
@@ -10,9 +12,8 @@
     const oldPrice = "1 599,99 ₽"
     const color = "#FF776A"
     const description = "Нежный сливочный вкус, густая консистенция и высокое качество - отличительные качества этого майонеза."
-    const href = "https://gl.alidi.ru/B2B/horeca-reactjs/-/issues/332" // АДрес куда ведет кнопка
+    const href = "https://gl.alidi.ru/B2B/horeca-reactjs/-/issues/332"
 
-    const POPUP_NAME = 'Название поп-апа'; // для сервиса
 
 
 // Цвет для АКЦИЯ! #4ED2A3
@@ -24,11 +25,10 @@
 		var popupContent = `<style>\
       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');\
 #cqPopup {\
-  width: 100%;\
-  height: 100%;\
   position: fixed;\
-  left: 0;\
-  top: 0;\
+right: 0;\
+top: 0;\
+z-index:100000;\
 }\
 .cq-popup__bg {\
   background: rgba(51, 51, 51, 0.8);\
@@ -234,6 +234,10 @@ border-radius: 5px;\
 color:white;\
 padding: 10px 100px;\
 margin-bottom:20px;\
+cursor: pointer;\
+}\
+.buttonText:hover{
+  color:white;\
 }\
 .price{
 color: #1753FF;\
@@ -241,6 +245,8 @@ margin:0;\
 margin-top:22px;\
 }\
 .label-wrapper{
+  padding-top: 20px;
+  height: auto;
   background: ${color};\
   width:100%;\
   display:flex;\
@@ -278,7 +284,7 @@ margin:0;\
 color: #333742;\
 }\
 </style>\
-<div class="cq-popup__bg"></div>\
+
 <div class="wrapper">\
     <div class="cq-popup__body wrapper">\
         <a onclick="close_popup()" class="cq-popup__close">Закрыть</a>\
@@ -299,7 +305,7 @@ const priceHTML =`
 const descriptionHTML = description? `<p class="description">${description}</p>` :""
 const popUpDoc = ` 
               <img class="cq-img" src=${img} alt="Girl in a jacket">
-              <a onclick="submit()" class="buttonText">${buttonText}</a>\
+              <a onclick="submit" class="buttonText">${buttonText}</a>\
             </div>\
     </div>\
 </div>`
@@ -314,13 +320,14 @@ var BACKGROUND = document.querySelector('.cq-popup__bg');
 var CLOSE_BUTTON = document.querySelector('.cq-popup__close');
 var FORM = document.querySelector('.cq-popup__form');
 var INPUT = document.querySelector('.cq-popup__input');
- 
+var SUBMIT = document.querySelector('.buttonText');
+SUBMIT.addEventListener("click", submit);
 
 function close_popup() {
   BODY.remove();
 };
 function submit(){
-  window.location.href = href;
+  window.open(href);
 }
  
 function track_data() {
@@ -329,7 +336,7 @@ function track_data() {
   
   carrotquest.trackMessageInteraction('{{ sending_id }}', 'replied');
   
-  carrotquest.track('Ответил на поп-ап — ' + POPUP_NAME);
+  carrotquest.track('Ответил на поп-ап — ' + "POPUP_NAME");
 };
  
 
