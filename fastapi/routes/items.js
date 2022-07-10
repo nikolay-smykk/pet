@@ -20,6 +20,9 @@ const getItemsOptions = {
         items: { ...Item }
       }
     }
+  },
+  handler: async (request, reply) => {
+    reply.send(items);
   }
 };
 
@@ -30,24 +33,23 @@ const getItemOpts = {
         ...Item
       }
     }
-  }
-};
-
-function itemRoutes(fastify, options, done) {
-  // GET ALL ITEMS
-  fastify.get("/items", getItemsOptions, async (request, reply) => {
-    reply.send(items);
-  });
-
-  // GET SINGLE ITEM
-  fastify.get("/items/:id", getItemOpts, async (request, reply) => {
+  },
+  handler: async (request, reply) => {
     const { id } = request.params;
     const item = items.find(item => item.id === Number(id));
     if (!item) {
       reply.code(404).send({ error: "Item not found" });
     }
     reply.send(item);
-  });
+  }
+};
+
+function itemRoutes(fastify, options, done) {
+  // GET ALL ITEMS
+  fastify.get("/items", getItemsOptions);
+
+  // GET SINGLE ITEM
+  fastify.get("/items/:id", getItemOpts);
 
   done();
 }
