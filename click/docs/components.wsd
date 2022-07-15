@@ -1,12 +1,26 @@
-@startuml App components
- 
- package "Nide.js Electron APPLICATION"{
-	[user interface vue.js] as ui
+@startuml App
 
-	node "selenium webdriver"{
-		[User events recorder] as recorder
-		[User events player] as player
-	}
- }
+package "Node Js App"{
+
+
+[User interface vue.js] as ui
+
+node "selenium webDriver" as selenium{
+
+[User interface react.js some] as recorder
+[user some] as player
+}
+
+}
+
+
+ui --> recorder
+ui --> player
+
+recorder --> recordfile : save file
+recordfile --> player : read file
+
+
+
 
 @enduml
