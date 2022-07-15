@@ -1,0 +1,17 @@
+@startuml User events recorder
+
+package Recorder{
+    node webdriver{
+        [Chrom extension] as extension
+    }
+
+    [server]
+
+
+    extension <--> websocket
+    server <--> websocket
+}
+
+
+
+@enduml
