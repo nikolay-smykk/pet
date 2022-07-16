@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { hot } from "react-hot-loader";
+import React, { Component } from "react";
+import "./style/app.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    counter: 0
+  };
+
+  handleClick = () => {
+    this.setState(prevState => {
+      return { counter: prevState.counter + 1 };
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        <h1>I'm configuring setting up Webpack!!!</h1>
+        <p>{`The count now is: ${this.state.counter}`}</p>
+        <button onClick={this.handleClick}>Click me</button>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default hot(module)(App);
