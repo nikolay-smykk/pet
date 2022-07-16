@@ -1,0 +1,11 @@
+@startuml
+
+package "Application"{
+    [ui]
+    [electron]
+}
+
+electron -- ipc
+ui -- ipc
+
+@enduml
